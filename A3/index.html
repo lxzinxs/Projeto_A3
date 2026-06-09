@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevGamificado - Plataforma de Ensino</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🚀 DevGamificado</div>
+        <div class="status-usuario">
+            <span>Olá, <strong id="nome-aluno">Estudante</strong></span> | 
+            <span class="badge-xp">XP: <span id="qtd-xp">0</span></span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="progresso-container">
+            <h2>Seu Progresso Atual</h2>
+            <div class="barra-progresso">
+                <div id="progresso-atual" style="width: 0%;"></div>
+            </div>
+        </section>
+
+        <section class="cursos-section">
+            <h2>Cursos Disponíveis</h2>
+            <div class="grid-cursos">
+                <div class="card-curso">
+                    <h3>Introdução ao JavaScript</h3>
+                    <p>Aprenda a lógica de programação de forma prática.</p>
+                    <span class="nivel facil">Iniciante</span>
+                    <button onclick="iniciarCurso('javascript')">Praticar Agora</button>
+                </div>
+                <div class="card-curso">
+                    <h3>Fundamentos do Java</h3>
+                    <p>Descubra a orientação a objetos de um jeito simples.</p>
+                    <span class="nivel medio">Intermediário</span>
+                    <button onclick="iniciarCurso('java')">Praticar Agora</button>
+                </div>
+            </div>
+        </section>
+        
+        <div class="navegacao">
+            <a href="ranking.html" class="btn-nav">🏆 Ver Ranking Competitivo</a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

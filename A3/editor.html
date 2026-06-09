@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor Prático</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Desafio: Crie uma variável que receba o valor 10</h2>
+        <p>Escreva em JavaScript: <code>let xp = 10;</code></p>
+        
+        <textarea id="codigo-usuario" placeholder="// Digite seu código aqui..."></textarea>
+        <br><br>
+        <button onclick="verificarCodigo()">Enviar Resposta</button>
+        <a href="index.html" style="color: white; margin-left: 20px;">Voltar</a>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function verificarCodigo() {
+            const codigo = document.getElementById('codigo-usuario').value.trim();
+            // Validação simples em tempo real
+            if (codigo.includes('let xp = 10') || codigo.includes('let xp=10')) {
+                ganharXP('facil'); // Chama a função gamificada do main.js
+                window.location.href = 'index.html';
+            } else {
+                alert('⚠️ Ops! Código incorreto. Tente novamente! Verifique a sintaxe.');
+            }
+        }
+    </script>
+</body>
+</html>
