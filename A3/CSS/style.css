@@ -1,91 +1,122 @@
 :root {
-    --bg-color: #1a1a2e;
-    --card-bg: #16213e;
-    --accent-color: #e94560;
-    --text-color: #ffffff;
-    --success-color: #0f971c;
+    --bg-main: #0d1117;
+    --bg-card: #161b22;
+    --accent: #8a2be2;
+    --text: #c9d1d9;
+    --success: #238636;
+    --error: #da3637;
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text);
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background-color: var(--card-bg);
-    border-bottom: 2px solid var(--accent-color);
+    padding: 15px 5%;
+    background-color: var(--bg-card);
+    border-bottom: 1px solid #30363d;
 }
 
-.badge-xp {
-    background-color: var(--accent-color);
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-}
+.logo { font-size: 22px; font-weight: bold; color: #fff; }
 
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
 
-.barra-progresso {
-    background-color: #333;
-    border-radius: 10px;
-    height: 20px;
-    width: 100%;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-#progresso-atual {
-    background-color: var(--success-color);
-    height: 100%;
-    transition: width 0.5s ease;
-}
-
-.grid-cursos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.card-curso {
-    background-color: var(--card-bg);
-    padding: 20px;
+.card-painel {
+    background-color: var(--bg-card);
+    border: 1px solid #30363d;
     border-radius: 8px;
-    border: 1px solid #333;
+    padding: 20px;
+    margin-bottom: 25px;
 }
 
-.nivel {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-bottom: 15px;
+/* Barra de Progresso */
+.barra-progresso {
+    background-color: #21262d;
+    height: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#progresso-atual {
+    background-color: var(--success);
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease;
 }
 
-.nivel.facil { background-color: #28a745; }
-.nivel.medio { background-color: #ffc107; color: black; }
+/* Conquistas Badges */
+.flex-conquistas { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge-conquista {
+    background: #21262d;
+    border: 1px solid #30363d;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
 
-button, .btn-nav {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+/* Filtros */
+.header-filtros { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 15px; }
+.filtros button {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    color: var(--text);
+    padding: 8px 16px;
+    margin-left: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
 }
+.filtros button:hover { background-color: var(--accent); color: white; }
 
-button:hover {
-    filter: brightness(1.2);
+/* Grid Cards */
+.grid-cursos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.card-curso { background-color: var(--bg-card); border: 1px solid #30363d; padding: 20px; border-radius: 8px; position: relative; }
+.tag-lang { position: absolute; top: 15px; right: 15px; font-size: 11px; padding: 3px 8px; border-radius: 12px; font-weight: bold; }
+.tag-lang.js { background-color: #f7df1e; color: black; }
+.tag-lang.java { background-color: #007396; color: white; }
+.tag-lang.csharp { background-color: #178600; color: white; }
+
+.meta-card { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+.nivel { font-size: 12px; padding: 4px 8px; border-radius: 4px; }
+.nivel.facil { background: rgba(35, 134, 54, 0.2); color: #58a6ff; }
+.nivel.medio { background: rgba(218, 165, 32, 0.2); color: #d4af37; }
+
+.btn-acao, .btn-navegacao, .btn-voltar {
+    background-color: var(--success); color: white; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: bold; display: inline-block;
 }
+.btn-navegacao { background-color: var(--accent); padding: 12px 30px; font-size: 16px; }
+.btn-voltar { background-color: #21262d; border: 1px solid #30363d; }
+
+/* Layout Split do Editor */
+.layout-editor { display: flex; height: 100vh; background-color: #010409; }
+.painel-instrucoes { width: 35%; background-color: var(--bg-card); border-right: 1px solid #30363d; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; }
+.zona-codigo { width: 65%; display: flex; flex-direction: column; padding: 15px; box-sizing: border-box; }
+.editor-header { background-color: #161b22; padding: 10px; border-radius: 6px 6px 0 0; display: flex; align-items: center; gap: 6px; border: 1px solid #30363d; }
+.ponto { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.ponto.vermelha { background-color: var(--error); }
+.ponto.amarela { background-color: #dbab09; }
+.ponto.verde { background-color: var(--success); }
+.aba-arquivo { margin-left: 15px; font-family: monospace; font-size: 13px; color: #8b949e; }
+
+textarea {
+    flex-grow: 1; background-color: #0d1117; color: #79c0ff; font-family: 'Courier New', Courier, monospace; font-size: 16px; padding: 15px; border: 1px solid #30363d; border-top: none; resize: none; outline: none;
+}
+.acoes-editor { padding: 15px 0; text-align: right; }
+.btn-executar { background-color: var(--accent); color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+/* Terminal */
+.terminal { background-color: #000; border: 1px solid #30363d; border-radius: 6px; padding: 15px; height: 120px; }
+.terminal-header { font-size: 12px; color: #8b949e; font-family: monospace; margin-bottom: 5px; }
+pre { margin: 0; font-family: monospace; color: #58a6ff; font-size: 13px; white-space: pre-wrap; }
+.terminal-erro { color: var(--error); font-family: monospace; }
+.terminal-sucesso { color: #56d364; font-family: monospace; }
+
+/* Tabelas */
+.tabela-ranking { width: 100%; border-collapse: collapse; margin-top: 15px; }
+.tabela-ranking th, .tabela-ranking td { padding: 12px; text-align: left; border-bottom: 1px solid #30363d; }
+.linha-destaque { background-color: rgba(138, 43, 226, 0.15); font-weight: bold; }
+.badge-xp { background-color: var(--accent); padding: 4px 10px; border-radius: 12px; font-size: 12px; color: white; }

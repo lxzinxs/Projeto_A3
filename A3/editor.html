@@ -2,42 +2,78 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Editor Prático</title>
+    <title>DevGamificado | Editor</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        textarea {
-            width: 100%;
-            height: 150px;
-            background-color: #000;
-            color: #0f0;
-            font-family: monospace;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Desafio: Crie uma variável que receba o valor 10</h2>
-        <p>Escreva em JavaScript: <code>let xp = 10;</code></p>
-        
-        <textarea id="codigo-usuario" placeholder="// Digite seu código aqui..."></textarea>
-        <br><br>
-        <button onclick="verificarCodigo()">Enviar Resposta</button>
-        <a href="index.html" style="color: white; margin-left: 20px;">Voltar</a>
+    <div class="layout-editor">
+        <div class="painel-instrucoes">
+            <a href="index.html" class="btn-voltar">⬅ Abandonar Prática</a>
+            <h2 id="titulo-desafio">Buscando Exercício...</h2>
+            <div id="corpo-instrucao" class="texto-instrucao"></div>
+            <div class="dica-box">
+                <strong>💡 Dica de Compilação:</strong> Certifique-se de não adicionar ponto e vírgula extras e respeite as letras maiúsculas/minúsculas.
+            </div>
+        </div>
+
+        <div class="zona-codigo">
+            <div class="editor-header">
+                <span class="ponto vermelha"></span>
+                <span class="ponto amarela"></span>
+                <span class="ponto verde"></span>
+                <span id="nome-arquivo" class="aba-arquivo">code.txt</span>
+            </div>
+            <textarea id="editor-texto" spellcheck="false" placeholder="// Escreva seu código aqui..."></textarea>
+            
+            <div class="acoes-editor">
+                <button onclick="validarExercicioAtual()" class="btn-executar">⚡ Enviar para Correção Automática</button>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">💻 Console Integrado V2.0</div>
+                <pre id="output-terminal">> Aguardando submissão do código do estudante...</pre>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
     <script>
-        function verificarCodigo() {
-            const codigo = document.getElementById('codigo-usuario').value.trim();
-            // Validação simples em tempo real
-            if (codigo.includes('let xp = 10') || codigo.includes('let xp=10')) {
-                ganharXP('facil'); // Chama a função gamificada do main.js
-                window.location.href = 'index.html';
-            } else {
-                alert('⚠️ Ops! Código incorreto. Tente novamente! Verifique a sintaxe.');
-            }
+        const urlParams = new URLSearchParams(window.location.search);
+        const idExercicio = urlParams.get('id') || 'js_1';
+
+        const exercicioAtual = listaDesafios.find(ex => ex.id === idExercicio);
+
+        if (exercicioAtual) {
+            document.getElementById('titulo-desafio').innerText = exercicioAtual.titulo;
+            document.getElementById('corpo-instrucao').innerHTML = exercicioAtual.instrucao;
+            document.getElementById('nome-arquivo').innerText = exercicioAtual.arquivo;
+            document.getElementById('editor-texto').value = exercicioAtual.template;
+        } else {
+            document.getElementById('titulo-desafio').innerText = "Erro!";
+            document.getElementById('corpo-instrucao').innerText = "Exercício não encontrado no banco de dados.";
+        }
+
+        function validarExercicioAtual() {
+            if (!exercicioAtual) return;
+
+            const codigoLimpo = document.getElementById('editor-texto').value.replace(/\s+/g, ' ').trim();
+            const terminal = document.getElementById('output-terminal');
+            
+            terminal.innerText = "> Lendo buffer do editor...\n> Efetuando testes unitários automatizados...";
+            
+            setTimeout(() => {
+                if (exercicioAtual.validador(codigoLimpo)) {
+                    terminal.className = "terminal-sucesso";
+                    terminal.innerText = `> STATUS: SUCESSO!\n> Retorno esperado obtido.\n> Ganhou +${exercicioAtual.xp} XP!`;
+                    
+                    premiarUsuario(exercicioAtual.xp);
+                    
+                    setTimeout(() => { window.location.href = "index.html"; }, 1800);
+                } else {
+                    terminal.className = "terminal-erro";
+                    terminal.innerText = "> STATUS: ERRO DE COMPILAÇÃO!\n> Sintaxe incorreta ou resposta fora do padrão didático esperado.";
+                }
+            }, 800);
         }
     </script>
 </body>

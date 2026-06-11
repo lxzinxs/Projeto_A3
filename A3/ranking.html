@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>DevGamificado | Ranking</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🏆 Classificação Geral</div>
+        <a href="index.html" class="btn-voltar">Voltar ao Painel</a>
+    </header>
+
+    <main class="container">
+        <section class="card-painel">
+            <h2>Estudantes em Destaque</h2>
+            <p>A evolução e ganho de nível baseia-se na entrega correta de desafios práticos.</p>
+            
+            <table class="tabela-ranking">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Estudante</th>
+                        <th>Pontuação Total</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela-ranking">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>window.onload = renderRanking;</script>
+</body>
+</html>

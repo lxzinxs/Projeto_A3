@@ -3,49 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevGamificado - Plataforma de Ensino</title>
+    <title>DevGamificado | Painel</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <div class="logo">🚀 DevGamificado</div>
         <div class="status-usuario">
-            <span>Olá, <strong id="nome-aluno">Estudante</strong></span> | 
+            <span>Estudante: <strong id="nome-aluno">...</strong></span>
             <span class="badge-xp">XP: <span id="qtd-xp">0</span></span>
         </div>
     </header>
 
     <main class="container">
-        <section class="progresso-container">
-            <h2>Seu Progresso Atual</h2>
-            <div class="barra-progresso">
-                <div id="progresso-atual" style="width: 0%;"></div>
-            </div>
+        <section class="card-painel">
+            <h2>Nível de Evolução da Trilha</h2>
+            <div class="barra-progresso"><div id="progresso-atual" style="width: 0%;"></div></div>
+        </section>
+
+        <section class="card-painel">
+            <h2>🏅 Suas Conquistas Recentes</h2>
+            <div id="lista-conquistas" class="flex-conquistas"></div>
         </section>
 
         <section class="cursos-section">
-            <h2>Cursos Disponíveis</h2>
-            <div class="grid-cursos">
-                <div class="card-curso">
-                    <h3>Introdução ao JavaScript</h3>
-                    <p>Aprenda a lógica de programação de forma prática.</p>
-                    <span class="nivel facil">Iniciante</span>
-                    <button onclick="iniciarCurso('javascript')">Praticar Agora</button>
+            <div class="header-filtros">
+                <h2>Exercícios Disponíveis (10 Desafios)</h2>
+                <div class="filtros">
+                    <button onclick="filtrarCursos('todos')">Todos</button>
+                    <button onclick="filtrarCursos('javascript')">JavaScript</button>
+                    <button onclick="filtrarCursos('java')">Java</button>
+                    <button onclick="filtrarCursos('csharp')">C#</button>
                 </div>
-                <div class="card-curso">
-                    <h3>Fundamentos do Java</h3>
-                    <p>Descubra a orientação a objetos de um jeito simples.</p>
-                    <span class="nivel medio">Intermediário</span>
-                    <button onclick="iniciarCurso('java')">Praticar Agora</button>
+            </div>
+
+            <div class="grid-cursos">
+                <div class="card-curso" data-lang="javascript">
+                    <span class="tag-lang js">JS</span>
+                    <h3>1. Variáveis Globais</h3>
+                    <p>Defina variáveis básicas de armazenamento de XP.</p>
+                    <div class="meta-card"><span class="nivel facil">Fácil (+10 XP)</span><button onclick="irParaExercicio('js_1')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="javascript">
+                    <span class="tag-lang js">JS</span>
+                    <h3>2. Definição de Constantes</h3>
+                    <p>Trabalhe com valores imutáveis no escopo do interpretador.</p>
+                    <div class="meta-card"><span class="nivel facil">Fácil (+10 XP)</span><button onclick="irParaExercicio('js_2')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="javascript">
+                    <span class="tag-lang js">JS</span>
+                    <h3>3. Retorno de Métodos</h3>
+                    <p>Construa funções estruturadas com retornos do tipo String.</p>
+                    <div class="meta-card"><span class="nivel medio">Médio (+20 XP)</span><button onclick="irParaExercicio('js_3')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="javascript">
+                    <span class="tag-lang js">JS</span>
+                    <h3>4. Sintaxe Arrow Function</h3>
+                    <p>Otimize códigos utilizando expressões lambda do ES6.</p>
+                    <div class="meta-card"><span class="nivel dificil">Difícil (+35 XP)</span><button onclick="irParaExercicio('js_4')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+
+                <div class="card-curso" data-lang="java">
+                    <span class="tag-lang java">Java</span>
+                    <h3>5. Saída padrão em Console</h3>
+                    <p>Use os fluxos de saída do pacote System de forma correta.</p>
+                    <div class="meta-card"><span class="nivel facil">Fácil (+10 XP)</span><button onclick="irParaExercicio('java_1')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="java">
+                    <span class="tag-lang java">Java</span>
+                    <h3>6. Escopo de Métodos</h3>
+                    <p>Declare assinaturas estáticas orientadas à Betoneira Industrial.</p>
+                    <div class="meta-card"><span class="nivel medio">Médio (+20 XP)</span><button onclick="irParaExercicio('java_2')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="java">
+                    <span class="tag-lang java">Java</span>
+                    <h3>7. Instanciação e New</h3>
+                    <p>Aloque instâncias de objetos na memória heap do Java.</p>
+                    <div class="meta-card"><span class="nivel dificil">Difícil (+35 XP)</span><button onclick="irParaExercicio('java_3')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+
+                <div class="card-curso" data-lang="csharp">
+                    <span class="tag-lang csharp">C#</span>
+                    <h3>8. Tipagem Primitiva Estática</h3>
+                    <p>Declare tipos numéricos inteiros em ambiente gerenciado do .NET.</p>
+                    <div class="meta-card"><span class="nivel facil">Fácil (+10 XP)</span><button onclick="irParaExercicio('csharp_1')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="csharp">
+                    <span class="tag-lang csharp">C#</span>
+                    <h3>9. Verificação Preventiva</h3>
+                    <p>Evite exceções e trate erros de servidores em formato CLI.</p>
+                    <div class="meta-card"><span class="nivel medio">Médio (+20 XP)</span><button onclick="irParaExercicio('csharp_2')" class="btn-acao">Praticar Agora</button></div>
+                </div>
+                <div class="card-curso" data-lang="csharp">
+                    <span class="tag-lang csharp">C#</span>
+                    <h3>10. Laços de Iteração</h3>
+                    <p>Percorra listas de dados de forma proativa utilizando Foreach.</p>
+                    <div class="meta-card"><span class="nivel dificil">Difícil (+35 XP)</span><button onclick="irParaExercicio('csharp_3')" class="btn-acao">Praticar Agora</button></div>
                 </div>
             </div>
         </section>
         
-        <div class="navegacao">
-            <a href="ranking.html" class="btn-nav">🏆 Ver Ranking Competitivo</a>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="ranking.html" class="btn-navegacao">🏆 Ver Tabela de Classificação</a>
         </div>
     </main>
 
     <script src="js/main.js"></script>
+    <script>window.onload = renderDashboard;</script>
 </body>
 </html>
